@@ -1,0 +1,1089 @@
+{
+	"info": {
+		"_postman_id": "51cf83c8-7589-4c4b-83ed-55a468e28ba9",
+		"name": "Spotify",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "REGISTRO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "breiner",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "correa",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "breiner@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"register"
+					]
+				},
+				"description": "Necesitamos \r\nname\r\nsurname\r\nemail\r\npassword"
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "breiner@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "El usuario se loguea\r\nNecesitamos\r\nemail\r\npassword"
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN Y GENERAR TOKEN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "082ff2b9-c4d6-43b8-babd-22d057e17f1e",
+						"exec": [
+							"console.log('No se bre el token');\r",
+							"\r",
+							"let resp = pm.response.json();\r",
+							"\r",
+							"if (resp.ok) {\r",
+							"    let token = resp.token;\r",
+							"\r",
+							"    pm.environment.set(\"token\", token);\r",
+							"} else {\r",
+							"    console.log('No se actualizo el token')\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "breiner@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "gethash",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "El usuario se loguea\r\nNecesitamos\r\nemail\r\npassword"
+			},
+			"response": []
+		},
+		{
+			"name": "USUARIO:Actualiza un usuario",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name ",
+							"value": "roiser",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "correa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/update-user/5ebb7b9af8064d1184d05e61",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"update-user",
+						"5ebb7b9af8064d1184d05e61"
+					]
+				},
+				"description": "Necesitamos \r\nTodos los datos menos el id y name se pueden actualizar"
+			},
+			"response": []
+		},
+		{
+			"name": "USUARIO:Subir imagen",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/muj8/Pictures/1.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/upload-image-user/5ebb7b9af8064d1184d05e61",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"upload-image-user",
+						"5ebb7b9af8064d1184d05e61"
+					]
+				},
+				"description": "Neeesitamos \r\nimage"
+			},
+			"response": []
+		},
+		{
+			"name": "USUARIO:Mostrar imagen de Usuario",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3977/api/get-image-user/0R_QFgraPywPT9xHPIAydA7A.png",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"get-image-user",
+						"0R_QFgraPywPT9xHPIAydA7A.png"
+					]
+				},
+				"description": "necesita que le pasemos por el url del servicio \r\nel nombre de la ruta de nuestra imagen \r\npara asi poder mostrarla"
+			},
+			"response": []
+		},
+		{
+			"name": "ARTIST:Creamos un artista",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Mar de copas",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Romantica",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/artist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"artist"
+					]
+				},
+				"description": "Necesitamos\r\nname\r\ndescription"
+			},
+			"response": []
+		},
+		{
+			"name": "ARTIST:Conseguimos un artista por Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/artist/5ebb9576f8064d1184d05e62",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"artist",
+						"5ebb9576f8064d1184d05e62"
+					]
+				},
+				"description": "Necesitamos\r\npor el url el id del artista"
+			},
+			"response": []
+		},
+		{
+			"name": "ARTIST:Conseguimos un listado de artista",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/artists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"artists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ARTIST:Actualizamos un artista por Id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "description",
+							"value": "Romantica",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/artist/5ebb9576f8064d1184d05e62",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"artist",
+						"5ebb9576f8064d1184d05e62"
+					]
+				},
+				"description": "Necesitamos\r\npor el url el id del artista"
+			},
+			"response": []
+		},
+		{
+			"name": "ARTIST:Eliminamos un artista->albums->canciones",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/artist/5ebb9576f8064d1184d05e62",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"artist",
+						"5ebb9576f8064d1184d05e62"
+					]
+				},
+				"description": "Necesitamos\r\npor el url el id del artista"
+			},
+			"response": []
+		},
+		{
+			"name": "ARTIST:Subir imagen",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/muj8/Pictures/1.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/upload-image-artist/5ebb9677f8064d1184d05e63",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"upload-image-artist",
+						"5ebb9677f8064d1184d05e63"
+					]
+				},
+				"description": "Necesitamos \r\nimage"
+			},
+			"response": []
+		},
+		{
+			"name": "ARTIST:Mostrar Imagen del artista",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/muj8/Pictures/1.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/get-image-artist/JWkJipMeYL0BKCNRx_LyaBgE.png",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"get-image-artist",
+						"JWkJipMeYL0BKCNRx_LyaBgE.png"
+					]
+				},
+				"description": "Necesitamos \r\nla ruta de la imagen "
+			},
+			"response": []
+		},
+		{
+			"name": "ALBUM:Creamos un album",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "4 corazones",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Sin bandera y Rio roma",
+							"type": "text"
+						},
+						{
+							"key": "year",
+							"value": "2019",
+							"type": "text"
+						},
+						{
+							"key": "artist",
+							"value": "5ebb9677f8064d1184d05e63",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/album",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"album"
+					]
+				},
+				"description": "Necesitamos\r\ntitle\r\ndescription\r\nyear\r\nartist:id del artista con quien se relaciona"
+			},
+			"response": []
+		},
+		{
+			"name": "ALBUM:Conseguimos un Album por su id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/album/5ebba2d0415e171ef0dbdd33",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"album",
+						"5ebba2d0415e171ef0dbdd33"
+					]
+				},
+				"description": "el id del album es pasado por parametro"
+			},
+			"response": []
+		},
+		{
+			"name": "ALBUM:Listaremos todos los albums",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/albums",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"albums"
+					]
+				},
+				"description": "si llega mostraremos todos los artista\r\n    :Listaremos todos sus albumnes\r\n    :Ordenaremos por titulo\r\n    \r\nsino llega el id del artista \r\n    :Ordenaremos por año"
+			},
+			"response": []
+		},
+		{
+			"name": "ALBUM:Actualizamos al album por su id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "year",
+							"value": "2021",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/album/5ebba2d0415e171ef0dbdd33",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"album",
+						"5ebba2d0415e171ef0dbdd33"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ALBUM:Eliminamos a un album por su id ",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "year",
+							"value": "2021",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/album/5ebba2d0415e171ef0dbdd33",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"album",
+						"5ebba2d0415e171ef0dbdd33"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ALBUM:Subir Imagen",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/muj8/Pictures/1.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/upload-image-album/5ebba2a9415e171ef0dbdd32",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"upload-image-album",
+						"5ebba2a9415e171ef0dbdd32"
+					]
+				},
+				"description": "Neesitamos\r\nimage"
+			},
+			"response": []
+		},
+		{
+			"name": "ALBUM:Mostrar Imagen",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/get-image-album/pqtLfo37T5B0hMgBCWh9aRN8.png",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"get-image-album",
+						"pqtLfo37T5B0hMgBCWh9aRN8.png"
+					]
+				},
+				"description": "Neesitamos la ruta de la imagen\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "SONG:Creamos una Cancion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "number",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Te vi llegar",
+							"type": "text"
+						},
+						{
+							"key": "duration",
+							"value": "2:54",
+							"type": "text"
+						},
+						{
+							"key": "album",
+							"value": "5ebba2a9415e171ef0dbdd32",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/song",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"song"
+					]
+				},
+				"description": "Necesitamos\r\nnumber\r\nname\r\nduration\r\nalbum"
+			},
+			"response": []
+		},
+		{
+			"name": "SONG:Conseguimos una cancion por su id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/song/5ec201ac2998f519b4458394",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"song",
+						"5ec201ac2998f519b4458394"
+					]
+				},
+				"description": "Necesitamos el id de la cancion por url"
+			},
+			"response": []
+		},
+		{
+			"name": "SONG:Conseguimos un listado de canciones",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/songs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"songs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SONG:Actualizamos una cancion",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "duration",
+							"value": "3:00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/song/5ebbacdb415e171ef0dbdd35",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"song",
+						"5ebbacdb415e171ef0dbdd35"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SONG:Eliminamos una cancion ",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "duration",
+							"value": "3:00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/song/5ebbacdb415e171ef0dbdd35",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"song",
+						"5ebbacdb415e171ef0dbdd35"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SONG:Subir Cancion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/muj8/Desktop/SnapTube Audio/ArianaNext.mp3"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/upload-file-song/5ebbac94415e171ef0dbdd34",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"upload-file-song",
+						"5ebbac94415e171ef0dbdd34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SONG:Subir Cancion Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:3977/get-song-file/52nQwCKRxO7irkd6b_dqB9j6.mp3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"get-song-file",
+						"52nQwCKRxO7irkd6b_dqB9j6.mp3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SONG:Escuchamos la cancion",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZWJiN2I5YWY4MDY0ZDExODRkMDVlNjEiLCJuYW1lIjoiYnJlaW5lciIsInN1cm5hbWUiOiJjb3JyZWEiLCJlbWFpbCI6ImJyZWluZXJAZ21haWwuY29tIiwicm9sZSI6IlJPTEVfVVNFUiIsImltYWdlIjoibnVsbCIsImlhdCI6MTU4OTM0OTExOX0.JM5FgwvcWileUkIYWiub15Nuy5-EmAKpaUFkrGDfRI4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:3977/api/get-song-file/Owwp6pjjnZnrNjShzIgg00rg.mp3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3977",
+					"path": [
+						"api",
+						"get-song-file",
+						"Owwp6pjjnZnrNjShzIgg00rg.mp3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

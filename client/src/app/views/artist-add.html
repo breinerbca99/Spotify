@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-6" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+        <h1>{{titulo}}</h1>
+
+        <div *ngIf="alertMessage">
+            <div class="alert alert-info">
+                {{alertMessage}}
+            </div>
+        </div>
+
+        <form #formArtist="ngForm" (ngSubmit)="onSubmit()">
+            <p>
+                <label>Nombre</label>
+                <input type="text" #name="ngModel" name="name" [(ngModel)]="artist.name" required class="form-control" />
+                <span *ngIf="!name.valid && name.touched">
+          El nombre es oligatoria
+        </span>
+            </p>
+
+            <p>
+                <label>Description</label>
+                <textarea #description="ngModel" name="description" [(ngModel)]="artist.description" required class="form-control">
+        </textarea>
+                <span *ngIf="!description.valid && description.touched">
+          La descripcion es oligatoria
+        </span>
+            </p>
+            <!--Subir imagen de Artista-->
+            <div *ngIf="is_edit" class="class">
+                <div class="artist-image-for-edit" *ngIf="artist.image && artist.image != 'null'">
+                    <img src="{{url + 'get-image-artist/' + artist.image }}" />
+                </div>
+
+                <p>
+                    <label>Sube la imagen del artista</label>
+                    <input type="file" placeholder="Subir imae.." (change)="fileChangeEvent($event)">
+                </p>
+            </div>
+            <!--/Subir imagen de Artista-->
+
+            <input type="submit" value="{{titulo}}" [disabled]="!formArtist.form.valid" class="btn btn-success" />
+        </form>
+    </div>
+
+    <div class="col-6" *ngIf="!identity || identity.role != 'ROLE_ADMIN'">
+        <h1>Error</h1>
+        <p>No tienes acceso</p>
+    </div>
+    <h1>gaaa</h1>
+</div>

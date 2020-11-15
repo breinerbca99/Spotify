@@ -1,0 +1,8 @@
+<i class="fas fa-play"></i>
+<i class="fas fa-film"></i>
+<i class="fas fa-tools"></i>
+<i class="fas fa-sign-out-alt"></i>
+<i class="fab fa-spotify"></i>
+<i class="fas fa-music"></i>
+<i class="fas fa-search"></i>
+<i class="far fa-star"></i>
